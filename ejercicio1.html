@@ -106,19 +106,40 @@
 </main>
 
 <script>
-	// Agregar las instrucciones JS para resolver el ejercicio aquí.
 
-  $('#boton').on('click', function(){
-			var selector_value = $('#camposelector').val();
-			if (selector_value == ''){
-				alert("Debe ingresar un selector jQuery");
-			} else if (selector_value[0] != '$'){
-				$('#camposelector').val('');
-				alert("Inicia con un selector valido ($)");
-			} else{
-				alert("Selector valido")
-			}
-		});
+// AMBOS CODIGOS FUNCIONAN	
+/*
+var selectorField = $('#camposelector');
+    var boton = $('#boton');
+    var historial = $('.historial');
+    var seleccionados = $('.seleccionados');
+    boton.on('click', function(){
+        inputVal = selectorField[0].value;
+        let element = eval(inputVal);
+        element.fadeOut('slow', function(){
+        element.fadeIn('slow');
+
+        });
+        historial.append("<p>" + inputVal + "</p>");
+        seleccionados.append("<p>" + element.length + "</p>");
+    });
+    */
+  text = $("#camposelector");
+  $("#boton").click(function(){
+    if (text.val().length == 0) {
+      alert("Debe ingresar un selector jQuery!");
+    } else {
+      try {
+        content = eval(text.val());
+        content.fadeOut(1000);
+        content.fadeIn(1000);
+        $(".historial").append("<p>" + text.val() + "</p>");
+        $(".seleccionados").append("<p>" + content.length + "</p>");
+      } catch {}
+      text.val("");
+    }
+  });
+
 </script>
 
 </body>
